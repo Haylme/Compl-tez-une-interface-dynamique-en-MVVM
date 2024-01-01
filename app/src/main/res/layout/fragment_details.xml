@@ -85,6 +85,59 @@
 
         </com.google.android.material.chip.ChipGroup>
 
+
+        <TextView
+            android:id="@+id/notemoyenne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="4.0"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@+id/separator"
+            app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
+            app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName" />
+
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/etoiles"
+            style="?attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:stepSize="0.2"
+            app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
+            app:layout_constraintTop_toBottomOf="@id/notemoyenne" />
+
+        <TextView
+            android:id="@+id/moyenneglobal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="(257)"
+            app:layout_constraintStart_toStartOf="@+id/notemoyenne"
+            app:layout_constraintTop_toBottomOf="@+id/etoiles"
+
+            />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/chip_take_away"
+
+
+
+
+            />
+
+
         <View
             android:id="@+id/separator"
             android:layout_width="0dp"
@@ -96,7 +149,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvRestaurantHours"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
+            app:layout_constraintTop_toBottomOf="@id/notemoyenne" />
 
         <ImageView
             android:id="@+id/icon_hours"
