@@ -17,8 +17,12 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.openclassrooms.tajmahal.R;
+import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
 import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
+import com.openclassrooms.tajmahal.domain.model.Review;
+
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -63,6 +67,12 @@ public class DetailsFragment extends Fragment {
         setupUI(); // Sets up user interface components.
         setupViewModel(); // Prepares the ViewModel for the fragment.
         detailsViewModel.getTajMahalRestaurant().observe(requireActivity(), this::updateUIWithRestaurant); // Observes changes in the restaurant data and updates the UI accordingly.
+
+        detailsViewModel.getReviews().observe(requireActivity(), this::updateReviewsRate);
+
+        detailsViewModel.getReviews().observe(requireActivity(), this::updateProgressBar);
+
+        detailsViewModel.getReviews().observe(requireActivity(), this::updateAverageRate);
     }
 
     /**
@@ -122,6 +132,66 @@ public class DetailsFragment extends Fragment {
         binding.buttonPhone.setOnClickListener(v -> dialPhoneNumber(restaurant.getPhoneNumber()));
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
     }
+
+
+
+    private void updateReviewsRate (List<Review>reviews){
+
+        RestaurantFakeApi restaurantAverageReviews = new RestaurantFakeApi();
+
+        double averageNote = restaurantAverageReviews.getAverageNote(reviews);
+
+
+        binding.notemoyenne.setText(String.valueOf(averageNote));
+        binding.etoiles.setRating((float) averageNote);
+
+
+
+    }
+
+    private void updateProgressBar (List<Review>reviews){
+
+        RestaurantFakeApi progressBar = new RestaurantFakeApi();
+
+        int barProgress1 = progressBar.getAverageProgressBar1(reviews);
+
+        int barProgress2 = progressBar.getAverageProgressBar2(reviews);
+
+        int barProgress3 = progressBar.getAverageProgressBar3(reviews);
+
+        int barProgress4 = progressBar.getAverageProgressBar4(reviews);
+
+        int barProgress5 = progressBar.getAverageProgressBar5(reviews);
+
+        binding.progressBar1.setProgress(barProgress5);
+        binding.progressBar2.setProgress(barProgress4);
+        binding.progressBar3.setProgress(barProgress3);
+        binding.progressBar4.setProgress(barProgress2);
+        binding.progressBar5.setProgress(barProgress1);
+
+
+
+
+    }
+
+    private void updateAverageRate(List<Review>reviews){
+
+        RestaurantFakeApi restaurantFakeRate = new RestaurantFakeApi();
+
+        int averageRate = restaurantFakeRate.getNumberOfVotes(reviews);
+
+        binding.totalnote.setText(String.valueOf(averageRate));
+
+
+
+
+    }
+
+
+
+
+
+
 
     /**
      * Opens the provided address in Google Maps or shows an error if Google Maps

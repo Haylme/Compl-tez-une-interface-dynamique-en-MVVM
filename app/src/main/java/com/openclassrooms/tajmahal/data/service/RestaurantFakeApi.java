@@ -31,12 +31,107 @@ import java.util.List;
 public class RestaurantFakeApi implements RestaurantApi {
 
     List<Review> reviews = Arrays.asList(
+
+
             new Review("Ranjit Singh", "https://xsgames.co/randomusers/assets/avatars/male/71.jpg", "Service très rapide et nourriture délicieuse, nous mangeons ici chaque week-end, c'est très rapide et savoureux. Continuez ainsi!", 5),
             new Review("Martyna Siddeswara", "https://xsgames.co/randomusers/assets/avatars/female/31.jpg", "Un service excellent et des plats incroyablement savoureux. Nous sommes vraiment satisfaits de notre expérience au restaurant.", 4),
             new Review("Komala Alanazi", "https://xsgames.co/randomusers/assets/avatars/male/46.jpg", "La cuisine est délicieuse et le service est également excellent. Le propriétaire est très sympathique et veille toujours à ce que votre repas soit satisfaisant. Cet endroit est un choix sûr!", 5),
             new Review("David John", "https://xsgames.co/randomusers/assets/avatars/male/67.jpg", "Les currys manquaient de diversité de saveurs et semblaient tous à base de tomates. Malgré les évaluations élevées que nous avons vues et nos attentes, nous avons été déçus.", 2),
             new Review("Emilie Hood", "https://xsgames.co/randomusers/assets/avatars/female/20.jpg", "Très bon restaurant Indien ! Je recommande.", 4)
     );
+
+
+    public int getNumberOfVotes(List<Review> reviews) {
+        int numberVote = reviews.size();
+        return numberVote;
+    }
+
+
+    public int getTotalRating(List<Review> reviews) {
+        int totalRating = 0;
+        for (Review review : reviews) {
+            totalRating += review.getRate();
+        }
+        return totalRating;
+    }
+
+
+    public double getAverageNote(List<Review> reviews) {
+        double totalRating = getTotalRating(reviews);
+        double numberOfVotes = getNumberOfVotes(reviews);
+        double averageRate;
+
+        if (numberOfVotes > 0) {
+            averageRate = totalRating / numberOfVotes;
+            return averageRate;
+        } else {
+            return 0.0;
+        }
+    }
+
+
+    public int getAverageProgressBar1(List<Review> reviews) {
+        List<Review> oneStar = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getRate() == 1) {
+                oneStar.add(review);
+            }
+        }
+
+        return oneStar.size();
+    }
+
+
+    public int getAverageProgressBar2(List<Review> reviews) {
+        List<Review> twoStar = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getRate() == 2) {
+                twoStar.add(review);
+            }
+        }
+
+        return twoStar.size();
+    }
+
+
+    public int getAverageProgressBar3(List<Review> reviews) {
+        List<Review> threeStar = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getRate() == 3) {
+                threeStar.add(review);
+            }
+        }
+
+        return threeStar.size();
+    }
+
+
+    public int getAverageProgressBar4(List<Review> reviews) {
+        List<Review> fourStar = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getRate() == 4) {
+                fourStar.add(review);
+            }
+        }
+
+        return fourStar.size();
+    }
+
+    public int getAverageProgressBar5(List<Review> reviews) {
+        List<Review> fiveStar = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getRate() == 5) {
+                fiveStar.add(review);
+            }
+        }
+
+        return fiveStar.size();
+    }
 
 
     /**
@@ -70,5 +165,6 @@ public class RestaurantFakeApi implements RestaurantApi {
     public List<Review> getReviews() {
         return reviews;
     }
-
 }
+
+
