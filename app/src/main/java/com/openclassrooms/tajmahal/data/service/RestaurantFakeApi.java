@@ -72,6 +72,7 @@ public class RestaurantFakeApi implements RestaurantApi {
 
     public int getAverageProgressBar1(List<Review> reviews) {
         List<Review> oneStar = new ArrayList<>();
+        int numberOfVotes1 = getNumberOfVotes(reviews);
 
         for (Review review : reviews) {
             if (review.getRate() == 1) {
@@ -79,12 +80,13 @@ public class RestaurantFakeApi implements RestaurantApi {
             }
         }
 
-        return oneStar.size();
+        return (int) ((double) oneStar.size() / numberOfVotes1 * 100);
     }
 
 
     public int getAverageProgressBar2(List<Review> reviews) {
         List<Review> twoStar = new ArrayList<>();
+        int numberOfVotes2 = getNumberOfVotes(reviews);
 
         for (Review review : reviews) {
             if (review.getRate() == 2) {
@@ -92,12 +94,13 @@ public class RestaurantFakeApi implements RestaurantApi {
             }
         }
 
-        return twoStar.size();
+        return (int) ((double) twoStar.size() / numberOfVotes2 * 100);
     }
 
 
     public int getAverageProgressBar3(List<Review> reviews) {
         List<Review> threeStar = new ArrayList<>();
+        int numberOfVotes3 = getNumberOfVotes(reviews);
 
         for (Review review : reviews) {
             if (review.getRate() == 3) {
@@ -105,12 +108,13 @@ public class RestaurantFakeApi implements RestaurantApi {
             }
         }
 
-        return threeStar.size();
+        return (int) ((double) threeStar.size() / numberOfVotes3 * 100);
     }
 
 
     public int getAverageProgressBar4(List<Review> reviews) {
         List<Review> fourStar = new ArrayList<>();
+        int numberOfVotes4 =getNumberOfVotes(reviews);
 
         for (Review review : reviews) {
             if (review.getRate() == 4) {
@@ -118,11 +122,12 @@ public class RestaurantFakeApi implements RestaurantApi {
             }
         }
 
-        return fourStar.size();
+        return (int) ((double) fourStar.size() / numberOfVotes4 * 100);
     }
 
     public int getAverageProgressBar5(List<Review> reviews) {
         List<Review> fiveStar = new ArrayList<>();
+        int numberOfVotes5 = getNumberOfVotes(reviews);
 
         for (Review review : reviews) {
             if (review.getRate() == 5) {
@@ -130,8 +135,12 @@ public class RestaurantFakeApi implements RestaurantApi {
             }
         }
 
-        return fiveStar.size();
+        return (int) ((double) fiveStar.size() / numberOfVotes5 * 100);
     }
+
+
+
+
 
 
     /**

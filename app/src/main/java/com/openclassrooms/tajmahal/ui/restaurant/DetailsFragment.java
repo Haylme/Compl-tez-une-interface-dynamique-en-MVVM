@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class DetailsFragment extends Fragment {
      * It's used to perform one-time initialization.
      *
      * @param savedInstanceState A bundle containing previously saved instance state.
-     * If the fragment is being re-created from a previous saved state, this is the state.
+     *                           If the fragment is being re-created from a previous saved state, this is the state.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,9 @@ public class DetailsFragment extends Fragment {
      * This method is called immediately after `onCreateView()`.
      * Use this method to perform final initialization once the fragment views have been inflated.
      *
-     * @param view The View returned by `onCreateView()`.
+     * @param view               The View returned by `onCreateView()`.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
+     *                           from a previous saved state as given here.
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -78,11 +79,11 @@ public class DetailsFragment extends Fragment {
     /**
      * Creates and returns the view hierarchy associated with the fragment.
      *
-     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
-     * The fragment should not add the view itself but return it.
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                           The fragment should not add the view itself but return it.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
+     *                           from a previous saved state as given here.
      * @return Returns the View for the fragment's UI, or null.
      */
     @Override
@@ -134,8 +135,7 @@ public class DetailsFragment extends Fragment {
     }
 
 
-
-    private void updateReviewsRate (List<Review>reviews){
+    private void updateReviewsRate(List<Review> reviews) {
 
         RestaurantFakeApi restaurantAverageReviews = new RestaurantFakeApi();
 
@@ -146,14 +146,14 @@ public class DetailsFragment extends Fragment {
         binding.etoiles.setRating((float) averageNote);
 
 
-
     }
 
-    private void updateProgressBar (List<Review>reviews){
+    private void updateProgressBar(List<Review> reviews) {
 
         RestaurantFakeApi progressBar = new RestaurantFakeApi();
 
         int barProgress1 = progressBar.getAverageProgressBar1(reviews);
+
 
         int barProgress2 = progressBar.getAverageProgressBar2(reviews);
 
@@ -170,27 +170,19 @@ public class DetailsFragment extends Fragment {
         binding.progressBar5.setProgress(barProgress1);
 
 
-
-
     }
 
-    private void updateAverageRate(List<Review>reviews){
+
+    private void updateAverageRate(List<Review> reviews) {
 
         RestaurantFakeApi restaurantFakeRate = new RestaurantFakeApi();
 
         int averageRate = restaurantFakeRate.getNumberOfVotes(reviews);
 
-        binding.totalnote.setText(String.valueOf(averageRate));
-
-
+        binding.totalnote.setText(String.valueOf("(" + averageRate + ")"));
 
 
     }
-
-
-
-
-
 
 
     /**
