@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +18,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.openclassrooms.tajmahal.R;
-import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
-import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
+
 import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
@@ -179,7 +178,8 @@ public class DetailsFragment extends Fragment {
 
         int averageRate = detailsViewModel.getNumberOfVotes(reviews);
 
-        binding.totalnote.setText("(" + averageRate + ")");
+        binding.totalnote.setText(String.format("(%d)", averageRate));
+
 
 
     }
