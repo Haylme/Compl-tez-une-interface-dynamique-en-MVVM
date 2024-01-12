@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.openclassrooms.tajmahal.R;
+import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
 import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
 import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
@@ -69,11 +70,9 @@ public class DetailsFragment extends Fragment {
         setupViewModel(); // Prepares the ViewModel for the fragment.
         detailsViewModel.getTajMahalRestaurant().observe(requireActivity(), this::updateUIWithRestaurant); // Observes changes in the restaurant data and updates the UI accordingly.
 
-        detailsViewModel.getReviews().observe(requireActivity(), this::updateReviewsRate);
+        detailsViewModel.getReviews().observe(requireActivity(), this::update);
 
-        detailsViewModel.getReviews().observe(requireActivity(), this::updateProgressBar);
 
-        detailsViewModel.getReviews().observe(requireActivity(), this::updateAverageRate);
     }
 
     /**
@@ -137,7 +136,7 @@ public class DetailsFragment extends Fragment {
 
     private void updateReviewsRate(List<Review> reviews) {
 
-        RestaurantFakeApi restaurantAverageReviews = new RestaurantFakeApi();
+        DetailsViewModel restaurantAverageReviews = new DetailsViewModel();
 
         double averageNote = restaurantAverageReviews.getAverageNote(reviews);
 
@@ -150,18 +149,19 @@ public class DetailsFragment extends Fragment {
 
     private void updateProgressBar(List<Review> reviews) {
 
-        RestaurantFakeApi progressBar = new RestaurantFakeApi();
-
-        int barProgress1 = progressBar.getAverageProgressBar1(reviews);
+        DetailsViewModel progressBar = new DetailsViewModel();
 
 
-        int barProgress2 = progressBar.getAverageProgressBar2(reviews);
+        int barProgress1 = progressBar.getAverageProgressBar(reviews,1);
 
-        int barProgress3 = progressBar.getAverageProgressBar3(reviews);
 
-        int barProgress4 = progressBar.getAverageProgressBar4(reviews);
+        int barProgress2 = progressBar.getAverageProgressBar(reviews,2);
 
-        int barProgress5 = progressBar.getAverageProgressBar5(reviews);
+        int barProgress3 = progressBar.getAverageProgressBar(reviews,3);
+
+        int barProgress4 = progressBar.getAverageProgressBar(reviews,4);
+
+        int barProgress5 = progressBar.getAverageProgressBar(reviews,5);
 
         binding.progressBar1.setProgress(barProgress5);
         binding.progressBar2.setProgress(barProgress4);
@@ -175,11 +175,20 @@ public class DetailsFragment extends Fragment {
 
     private void updateAverageRate(List<Review> reviews) {
 
-        RestaurantFakeApi restaurantFakeRate = new RestaurantFakeApi();
+        DetailsViewModel restaurantFakeRate = new DetailsViewModel();
 
         int averageRate = restaurantFakeRate.getNumberOfVotes(reviews);
 
-        binding.totalnote.setText(String.valueOf("(" + averageRate + ")"));
+        binding.totalnote.setText("(" + averageRate + ")");
+
+
+    }
+
+    public void update(List<Review> reviews) {
+
+        updateAverageRate(reviews);
+        updateProgressBar(reviews);
+        updateReviewsRate(reviews);
 
 
     }

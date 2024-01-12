@@ -12,6 +12,7 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 
 import javax.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -51,6 +52,53 @@ public class DetailsViewModel extends ViewModel {
     public LiveData<List<Review>> getReviews() {
         return restaurantRepository.getReviews();
     }
+
+
+
+
+    public int getNumberOfVotes(List<Review> reviews) {
+        int numberVote = reviews.size();
+        return numberVote;
+    }
+
+
+    public int getTotalRating(List<Review> reviews) {
+        int totalRating = 0;
+        for (Review review : reviews) {
+            totalRating += review.getRate();
+        }
+        return totalRating;
+    }
+
+
+    public double getAverageNote(List<Review> reviews) {
+        double totalRating = getTotalRating(reviews);
+
+
+        double numberOfVotes = getNumberOfVotes(reviews);
+        double averageRate;
+
+        if (numberOfVotes > 0) {
+            averageRate = totalRating / numberOfVotes;
+            return averageRate;
+        } else {
+            return 0.0;
+        }
+    }
+
+    public int getAverageProgressBar(List<Review> reviews, int starRating) {
+        List<Review> starReviews = new ArrayList<>();
+        int totalVotes = getNumberOfVotes(reviews);
+
+        for (Review review : reviews) {
+            if (review.getRate() == starRating) {
+                starReviews.add(review);
+            }
+        }
+
+        return (int) ((double) starReviews.size() / totalVotes * 100);
+    }
+
 
     /**
      * Retrieves the current day of the week in French.
