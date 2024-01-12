@@ -136,9 +136,9 @@ public class DetailsFragment extends Fragment {
 
     private void updateReviewsRate(List<Review> reviews) {
 
-        DetailsViewModel restaurantAverageReviews = new DetailsViewModel();
 
-        double averageNote = restaurantAverageReviews.getAverageNote(reviews);
+
+        double averageNote = detailsViewModel.getAverageNote(reviews);
 
 
         binding.notemoyenne.setText(String.valueOf(averageNote));
@@ -149,19 +149,19 @@ public class DetailsFragment extends Fragment {
 
     private void updateProgressBar(List<Review> reviews) {
 
-        DetailsViewModel progressBar = new DetailsViewModel();
 
 
-        int barProgress1 = progressBar.getAverageProgressBar(reviews,1);
+
+        int barProgress1 = detailsViewModel.getAverageProgressBar(reviews,1);
 
 
-        int barProgress2 = progressBar.getAverageProgressBar(reviews,2);
+        int barProgress2 = detailsViewModel.getAverageProgressBar(reviews,2);
 
-        int barProgress3 = progressBar.getAverageProgressBar(reviews,3);
+        int barProgress3 = detailsViewModel.getAverageProgressBar(reviews,3);
 
-        int barProgress4 = progressBar.getAverageProgressBar(reviews,4);
+        int barProgress4 = detailsViewModel.getAverageProgressBar(reviews,4);
 
-        int barProgress5 = progressBar.getAverageProgressBar(reviews,5);
+        int barProgress5 = detailsViewModel.getAverageProgressBar(reviews,5);
 
         binding.progressBar1.setProgress(barProgress5);
         binding.progressBar2.setProgress(barProgress4);
@@ -175,9 +175,9 @@ public class DetailsFragment extends Fragment {
 
     private void updateAverageRate(List<Review> reviews) {
 
-        DetailsViewModel restaurantFakeRate = new DetailsViewModel();
 
-        int averageRate = restaurantFakeRate.getNumberOfVotes(reviews);
+
+        int averageRate = detailsViewModel.getNumberOfVotes(reviews);
 
         binding.totalnote.setText("(" + averageRate + ")");
 
