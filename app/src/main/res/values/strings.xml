@@ -23,6 +23,11 @@
     <string name="phone_icon">Phone icon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="manon_garcia">Manon Garcia</string>
+    <string name="valider">Valider</string>
+    <string name="partager_ici_les_d_tails_de_votre_exp_rience">Partager ici les détails de votre expérience</string>
+    <string name="Manon_Garcia" translatable="false">Manon Garcia</string>
+    <string name="avatar_picture">avatar_picture</string>
 
 
 </resources>
