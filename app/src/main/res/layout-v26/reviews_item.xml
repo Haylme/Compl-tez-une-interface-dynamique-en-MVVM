@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatarPost"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="40dp"
+        android:src="@drawable/avatarpost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+
+
+        />
+
+
+    <TextView
+        android:id="@+id/namePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/jakarta_regular"
+        android:text="@string/Manon_Garcia"
+        android:textColor="#666666"
+        app:layout_constraintStart_toEndOf="@+id/avatarPost"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/etoilesPost"
+        style="?attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressTint="#FFB800"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:stepSize="0.2"
+
+        app:layout_constraintBottom_toBottomOf="@+id/avatarPost"
+        app:layout_constraintStart_toEndOf="@id/avatarPost"
+        app:layout_constraintTop_toBottomOf="@+id/namePost"
+
+        app:layout_constraintVertical_bias="1"
+
+        />
+
+
+    <EditText
+        android:id="@+id/textedit"
+        android:layout_width="320dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rectangle_border_post"
+        android:fontFamily="@font/jakarta_regular"
+        android:hint="@string/partager_ici_les_d_tails_de_votre_exp_rience"
+        android:inputType="text"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/avatarPost"
+        app:layout_constraintTop_toBottomOf="@id/etoilesPost" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/validate_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valider"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:chipBackgroundColor="#CF2F2F"
+        app:chipCornerRadius="12dp"
+        app:chipStrokeColor="#CF2F2F"
+        app:layout_constraintEnd_toEndOf="@id/textedit"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:textEndPadding="0dp"
+        app:textStartPadding="0dp" />
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="320dp"
+        android:layout_height="0.75dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#DADADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textedit" />
+
+
+    <ImageView
+        android:id="@+id/avatar_Reviews"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/avatar_picture"
+        app:layout_constraintStart_toStartOf="@+id/avatarPost"
+        app:layout_constraintTop_toBottomOf="@+id/separator"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+
+
+        />
+
+    <TextView
+        android:id="@+id/name_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/jakarta_regular"
+        android:text="@string/Manon_Garcia"
+        android:textColor="#666666"
+        app:layout_constraintStart_toEndOf="@+id/avatar_Reviews"
+        app:layout_constraintTop_toBottomOf="@+id/separator"
+
+        />
+
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/etoiles_reviews"
+        style="?attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="#FFB800"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:stepSize="0.2"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar_Reviews"
+        app:layout_constraintStart_toEndOf="@id/avatar_Reviews"
+        app:layout_constraintTop_toBottomOf="@+id/name_reviews"
+        app:layout_constraintVertical_bias="1"
+
+        />
+
+
+    <TextView
+        android:id="@+id/text_reviews"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/jakarta_regular"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/avatar_Reviews"
+        app:layout_constraintTop_toBottomOf="@id/etoiles_reviews" />
+
+    <View
+        android:id="@+id/separator_reviews"
+        android:layout_width="320dp"
+        android:layout_height="0.75dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#DADADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_reviews" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
