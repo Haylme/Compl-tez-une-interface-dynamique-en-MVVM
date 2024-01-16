@@ -13,26 +13,50 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.openclassrooms.tajmahal.R;
+import com.openclassrooms.tajmahal.databinding.FragmentReviewsListBinding;
 
 public class ReviewsListFragment extends Fragment {
 
-    private ReviewsListViewModel mViewModel;
+    private FragmentReviewsListBinding binding;
 
-    public static ReviewsListFragment newInstance() {
-        return new ReviewsListFragment();
+    private ReviewsListViewModel reviewsListViewModel;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_reviews_list, container, false);
+        binding = FragmentReviewsListBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
-        // TODO: Use the ViewModel
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SetupReviewList();
+        reviewsListViewModel.getReviews();/** a terminer **/
+
     }
+
+
+    private void SetupReviewList() {
+
+
+        reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
+
+
+    }
+
+
+    public static ReviewsListFragment newinstance() {
+        return new ReviewsListFragment();
+    }
+
 
 }
+

@@ -7,7 +7,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 
@@ -71,6 +74,8 @@ public class DetailsFragment extends Fragment {
 
         detailsViewModel.getReviews().observe(requireActivity(), this::update);
 
+        /**moveTo(); **/
+
 
     }
 
@@ -133,8 +138,9 @@ public class DetailsFragment extends Fragment {
     }
 
 
-    private void updateReviewsRate(List<Review> reviews) {
 
+
+    private void updateReviewsRate(List<Review> reviews) {
 
 
         double averageNote = detailsViewModel.getAverageNote(reviews);
@@ -149,18 +155,16 @@ public class DetailsFragment extends Fragment {
     private void updateProgressBar(List<Review> reviews) {
 
 
+        int barProgress1 = detailsViewModel.getAverageProgressBar(reviews, 1);
 
 
-        int barProgress1 = detailsViewModel.getAverageProgressBar(reviews,1);
+        int barProgress2 = detailsViewModel.getAverageProgressBar(reviews, 2);
 
+        int barProgress3 = detailsViewModel.getAverageProgressBar(reviews, 3);
 
-        int barProgress2 = detailsViewModel.getAverageProgressBar(reviews,2);
+        int barProgress4 = detailsViewModel.getAverageProgressBar(reviews, 4);
 
-        int barProgress3 = detailsViewModel.getAverageProgressBar(reviews,3);
-
-        int barProgress4 = detailsViewModel.getAverageProgressBar(reviews,4);
-
-        int barProgress5 = detailsViewModel.getAverageProgressBar(reviews,5);
+        int barProgress5 = detailsViewModel.getAverageProgressBar(reviews, 5);
 
         binding.progressBar1.setProgress(barProgress5);
         binding.progressBar2.setProgress(barProgress4);
@@ -175,14 +179,26 @@ public class DetailsFragment extends Fragment {
     private void updateAverageRate(List<Review> reviews) {
 
 
-
         int averageRate = detailsViewModel.getNumberOfVotes(reviews);
 
         binding.totalnote.setText(String.format("(%d)", averageRate));
 
 
-
     }
+
+   /** private void moveTo() {
+        binding.avis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new ReviewsListFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        });
+    }**/
+
 
     public void update(List<Review> reviews) {
 
@@ -241,6 +257,7 @@ public class DetailsFragment extends Fragment {
             Toast.makeText(requireActivity(), R.string.no_browser_found, Toast.LENGTH_SHORT).show();
         }
     }
+
 
     public static DetailsFragment newInstance() {
         return new DetailsFragment();

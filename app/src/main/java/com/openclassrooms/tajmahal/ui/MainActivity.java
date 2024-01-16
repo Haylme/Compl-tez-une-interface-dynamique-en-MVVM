@@ -1,12 +1,12 @@
 package com.openclassrooms.tajmahal.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.os.Bundle;
-import android.view.View;
 
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.ActivityMainBinding;
-import com.openclassrooms.tajmahal.ui.restaurant.DetailsFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -19,13 +19,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(binding.getRoot());
+
         if (savedInstanceState == null) {
+            NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.nav_graph);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, DetailsFragment.newInstance())
-                    .commitNow();
+                    .replace(R.id.nav_host_fragment, navHostFragment)
+                    .setPrimaryNavigationFragment(navHostFragment)
+                    .commit();
         }
     }
-
 }
