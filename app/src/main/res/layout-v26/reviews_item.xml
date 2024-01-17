@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@id/textedit" />
 
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/avatar_Reviews"
         android:layout_width="50dp"
         android:layout_height="50dp"
