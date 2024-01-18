@@ -1,7 +1,5 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -9,33 +7,32 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.openclassrooms.tajmahal.R;
+import com.openclassrooms.tajmahal.adapter.ReviewsAdapter;
 import com.openclassrooms.tajmahal.databinding.FragmentReviewsListBinding;
+import com.openclassrooms.tajmahal.domain.model.Review;
+
+import java.util.List;
 
 public class ReviewsListFragment extends Fragment {
 
     private FragmentReviewsListBinding binding;
 
+    //private ReviewsListViewModel reviewsListViewModel;
 
-
-
-    private AppBarConfiguration appBarConfiguration;
+    private ReviewsAdapter adapter;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -49,42 +46,23 @@ public class ReviewsListFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       
+        //SetupReviewList();
 
+
+        binding.recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerview.setAdapter(adapter);
+        binding.recyclerview.addItemDecoration(new DividerItemDecoration(binding.recyclerview.getContext(), DividerItemDecoration.VERTICAL));
 
     }
 
 
+  /**  private void SetupReviewList() {
 
 
+        reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
 
 
-
-
-
-    private void setupActionBar() {
-
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.toolbar);
-
-
-        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            // Handle the Up button click to navigate back
-            requireActivity().onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
+    }**/
 
 
 }
