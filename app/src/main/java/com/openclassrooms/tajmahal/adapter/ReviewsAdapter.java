@@ -13,9 +13,16 @@ import com.openclassrooms.tajmahal.databinding.ReviewsItemBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.zip.Inflater;
 
 public class ReviewsAdapter extends RefreshAbleAdapter<ReviewsAdapter.ReviewsViewholder> {
+
+
+    public ReviewsAdapter(List<Review> data) {
+        refresh(data);
+
+    }
 
 
     @NonNull

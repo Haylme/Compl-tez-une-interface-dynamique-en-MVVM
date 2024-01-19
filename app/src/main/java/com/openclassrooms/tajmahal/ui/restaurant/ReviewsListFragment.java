@@ -1,33 +1,36 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.adapter.ReviewsAdapter;
 import com.openclassrooms.tajmahal.databinding.FragmentReviewsListBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewsListFragment extends Fragment {
 
     private FragmentReviewsListBinding binding;
 
-    //private ReviewsListViewModel reviewsListViewModel;
+    private ReviewsListViewModel reviewsListViewModel;
 
     private ReviewsAdapter adapter;
+
+    List<Review> reviewsList = new ArrayList<>();
 
 
     @Override
@@ -46,8 +49,18 @@ public class ReviewsListFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //SetupReviewList();
+        setupReviewList();
+        toolBar();
 
+        reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
+            @Override
+            public void onChanged(List<Review> reviewslist) {
+
+                adapter.refresh(reviewslist);
+            }
+        });
+
+        adapter = new ReviewsAdapter(reviewsList);
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerview.setAdapter(adapter);
@@ -56,13 +69,24 @@ public class ReviewsListFragment extends Fragment {
     }
 
 
-  /**  private void SetupReviewList() {
+    private void setupReviewList() {
+        reviewsListViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(ReviewsListViewModel.class);
+}
 
 
-        reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
+    private void toolBar() {
 
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    }**/
+                if (getActivity() != null) {
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment_main_container).navigateUp();
+
+                }
+            }
+        });
+    }
 
 
 }

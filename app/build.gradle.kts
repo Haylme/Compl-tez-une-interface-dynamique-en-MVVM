@@ -44,7 +44,7 @@ dependencies {
     val nav_version = "2.7.6"
 
 
-
+    implementation ("androidx.activity:activity:1.8.2")
 
     implementation ("androidx.appcompat:appcompat:1.6.1")
 
