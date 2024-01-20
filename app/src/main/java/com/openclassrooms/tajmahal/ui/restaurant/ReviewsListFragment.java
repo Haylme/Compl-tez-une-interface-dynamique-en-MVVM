@@ -22,6 +22,9 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ReviewsListFragment extends Fragment {
 
     private FragmentReviewsListBinding binding;
@@ -70,7 +73,7 @@ public class ReviewsListFragment extends Fragment {
 
 
     private void setupReviewList() {
-        reviewsListViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(ReviewsListViewModel.class);
+        reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
 }
 
 

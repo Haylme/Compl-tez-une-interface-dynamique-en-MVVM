@@ -1,12 +1,9 @@
 package com.openclassrooms.tajmahal.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.ActivityMainBinding;

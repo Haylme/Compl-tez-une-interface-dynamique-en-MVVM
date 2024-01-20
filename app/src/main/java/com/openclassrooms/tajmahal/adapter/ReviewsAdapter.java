@@ -1,20 +1,16 @@
 package com.openclassrooms.tajmahal.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.tajmahal.databinding.ReviewsItemBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
-import java.text.DecimalFormat;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class ReviewsAdapter extends RefreshAbleAdapter<ReviewsAdapter.ReviewsViewholder> {
 
