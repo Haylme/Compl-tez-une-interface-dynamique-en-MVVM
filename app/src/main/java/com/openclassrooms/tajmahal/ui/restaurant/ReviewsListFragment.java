@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +39,11 @@ public class ReviewsListFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
+      
     }
 
 
@@ -83,6 +88,7 @@ public class ReviewsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 if (getActivity() != null) {
                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment_main_container).navigateUp();
 
@@ -90,6 +96,13 @@ public class ReviewsListFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
+
+
 
 
 }

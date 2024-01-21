@@ -1,6 +1,7 @@
 package com.openclassrooms.tajmahal.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -55,4 +56,9 @@ public class ReviewsAdapter extends RefreshAbleAdapter<ReviewsAdapter.ReviewsVie
             this.binding = binding;
         }
     }
+
+
+
+
+
 }
