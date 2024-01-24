@@ -1,10 +1,17 @@
 package com.openclassrooms.tajmahal.data.service;
 
+import android.net.Uri;
+import android.view.View;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.openclassrooms.tajmahal.R;
+import com.openclassrooms.tajmahal.databinding.FragmentReviewsListBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * A mock implementation of the {@link RestaurantApi} for testing and development purposes.
@@ -29,6 +36,60 @@ import java.util.List;
  */
 public class RestaurantFakeApi implements RestaurantApi {
 
+
+    FragmentReviewsListBinding binding;
+
+    private OnListUpdatedListener listener;
+
+    public void setOnListUpdatedListener(OnListUpdatedListener listener) {
+        this.listener = listener;
+    }
+
+
+
+    public List<Review> updateList(List<Review> reviews) {
+        binding.validateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = binding.namePost.getText().toString();
+
+                if (username.isEmpty()) {
+                    Snackbar.make(binding.getRoot(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+                    return;
+                }
+
+                int rate = (int) binding.etoilesPost.getRating();
+
+                if (rate < 1) {
+                    Snackbar.make(binding.getRoot(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+                    return;
+                }
+
+                String comment = binding.textedit.getText().toString();
+
+                if (comment.isEmpty()) {
+                    Snackbar.make(binding.getRoot(), "Review is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+                    return;
+                }
+
+
+                String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
+
+                Review newReview = new Review(username, picture, comment, rate);
+                reviews.add(newReview);
+
+
+                if (listener != null) {
+                    listener.onListUpdated(reviews);
+                }
+
+
+            }
+        });
+        return reviews;
+    }
+
+
     List<Review> reviews = Arrays.asList(
 
 
@@ -38,10 +99,6 @@ public class RestaurantFakeApi implements RestaurantApi {
             new Review("David John", "https://xsgames.co/randomusers/assets/avatars/male/67.jpg", "Les currys manquaient de diversité de saveurs et semblaient tous à base de tomates. Malgré les évaluations élevées que nous avons vues et nos attentes, nous avons été déçus.", 2),
             new Review("Emilie Hood", "https://xsgames.co/randomusers/assets/avatars/female/20.jpg", "Très bon restaurant Indien ! Je recommande.", 4)
     );
-
-
-
-
 
 
     /**
@@ -62,6 +119,19 @@ public class RestaurantFakeApi implements RestaurantApi {
     }
 
 
+
+
+    public void newRefresh(List<Review>reviews){
+        this.reviews.clear();
+        this.reviews.addAll(reviews);
+        notifyAll();
+
+
+
+
+    }
+
+
     /**
      * Retrieves a hard-coded {@link Review} object for the "Taj Mahal".
      * <p>
@@ -75,6 +145,6 @@ public class RestaurantFakeApi implements RestaurantApi {
     public List<Review> getReviews() {
         return reviews;
     }
+
+
 }
-
-

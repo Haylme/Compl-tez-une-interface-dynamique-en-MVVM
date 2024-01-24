@@ -65,6 +65,7 @@ public class ReviewsListFragment extends Fragment {
 
 
         adapter = new ReviewsAdapter(reviewsList);
+        adapter.notifyDataSetChanged();
 
 
         reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
@@ -79,7 +80,7 @@ public class ReviewsListFragment extends Fragment {
 
             }
         });
-        updateNewReviews(reviewsList);
+
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerview.setAdapter(adapter);
@@ -114,69 +115,6 @@ public class ReviewsListFragment extends Fragment {
         });
 
 
-    }
-
-    private void updateNewReviews(final List<Review> reviewList) {
-        binding.validateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Review newReview = newPost();
-                if (newReview != null) {
-
-                    reviewList.add(0, newReview);
-
-                    adapter.notifyItemInserted(0);
-
-                    binding.recyclerview.scrollToPosition(0);
-                }
-            }
-        });
-    }
-
-
-    private Review newPost() {
-
-
-        String username = binding.namePost.getText().toString();
-        if (getView() != null) {
-            if (username.isEmpty()) {
-                Snackbar.make(
-                        getView(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-
-            }
-        }
-
-
-        int rate = (int) binding.etoilesPost.getRating();
-        if (getView() != null) {
-            if (rate < 1) {
-                Snackbar.make(getView(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-
-
-            }
-        }
-        String comment = binding.textedit.getText().toString();
-        if (getView() != null) {
-            if (comment.isEmpty()) {
-                Snackbar.make(getView(), "Review is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-
-
-            }
-        }
-
-
-        String picture = binding.avatarPost.getDrawable().toString();
-        if (getView() != null) {
-            if (picture == null) {
-                Snackbar.make(getView(), "Need a picture", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-
-            }
-
-
-        }
-
-
-        return new Review(username, picture, comment, rate);
     }
 
 
