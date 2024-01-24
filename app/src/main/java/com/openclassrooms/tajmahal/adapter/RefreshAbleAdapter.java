@@ -20,4 +20,6 @@ public abstract class RefreshAbleAdapter< T extends ReviewsAdapter.ReviewsViewho
     }
 
 
+
+
 }

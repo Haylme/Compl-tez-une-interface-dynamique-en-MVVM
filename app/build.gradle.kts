@@ -40,17 +40,23 @@ android {
 dependencies {
 
 
+    implementation("androidx.mediarouter:mediarouter:1.6.0")
     val nav_version = "2.7.6"
 
 
     val appcompat_version = "1.6.1"
+
+
+
+
+
 
     implementation("androidx.appcompat:appcompat:$appcompat_version")
 
 
     implementation ("androidx.activity:activity:1.8.2")
 
-    implementation ("androidx.appcompat:appcompat:1.6.1")
+
 
     implementation ("com.github.bumptech.glide:glide:4.12.0")
 

@@ -3,9 +3,7 @@ package com.openclassrooms.tajmahal.ui;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.ActivityMainBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -18,19 +16,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
        // NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_main_container);
 
 
-        if (savedInstanceState == null) {
+        /**if (savedInstanceState == null) {
             NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.nav_graph);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.nav_host_fragment_main_container, navHostFragment)
-                    .setPrimaryNavigationFragment(navHostFragment)
+                   // .setPrimaryNavigationFragment(navHostFragment)
 
                     .commit();
-        }
+        }**/
     }
+
+
 }
