@@ -104,7 +104,9 @@
         app:layout_constraintEnd_toEndOf="@id/textedit"
         app:layout_constraintTop_toTopOf="parent"
         app:textEndPadding="0dp"
-        app:textStartPadding="0dp" />
+        app:textStartPadding="0dp"
+        android:clickable="true"
+        android:focusable="true" />
 
 
     <View

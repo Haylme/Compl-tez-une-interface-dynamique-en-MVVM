@@ -1,6 +1,7 @@
 package com.openclassrooms.tajmahal.data.service;
 
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -39,54 +40,61 @@ public class RestaurantFakeApi implements RestaurantApi {
 
     FragmentReviewsListBinding binding;
 
-    private OnListUpdatedListener listener;
 
-    public void setOnListUpdatedListener(OnListUpdatedListener listener) {
-        this.listener = listener;
-    }
-
-
-
-    public List<Review> updateList(List<Review> reviews) {
-        binding.validateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = binding.namePost.getText().toString();
-
-                if (username.isEmpty()) {
-                    Snackbar.make(binding.getRoot(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-                    return;
-                }
-
-                int rate = (int) binding.etoilesPost.getRating();
-
-                if (rate < 1) {
-                    Snackbar.make(binding.getRoot(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-                    return;
-                }
-
-                String comment = binding.textedit.getText().toString();
-
-                if (comment.isEmpty()) {
-                    Snackbar.make(binding.getRoot(), "Review is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-                    return;
-                }
+    /**
+     * private boolean isClicked = false;
+     * <p>
+     * public boolean setupButtonClickListener() {
+     * if (binding != null) {
+     * binding.validateButton.setOnClickListener(new View.OnClickListener() {
+     *
+     * @Override public void onClick(View v) {
+     * wasButtonClicked() = true;
+     * }
+     * });
+     * }
+     * return true;
+     * }
+     * <p>
+     * <p>
+     * public boolean wasButtonClicked() {
+     * return isClicked;
+     * }
+     **/
 
 
-                String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
-
-                Review newReview = new Review(username, picture, comment, rate);
-                reviews.add(newReview);
+    public boolean updateList() {
 
 
-                if (listener != null) {
-                    listener.onListUpdated(reviews);
-                }
+        String username = binding.namePost.getText().toString();
+
+        Log.d("test", username);
+
+        if (username.isEmpty()) {
+            Snackbar.make(binding.getRoot(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
+
+        int rate = (int) binding.etoilesPost.getRating();
+
+        if (rate < 1) {
+            Snackbar.make(binding.getRoot(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
+
+        String comment = binding.textedit.getText().toString();
+
+        if (comment.isEmpty()) {
+            Snackbar.make(binding.getRoot(), "Review is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
 
 
-            }
-        });
-        return reviews;
+        String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
+
+        reviews.add(new Review(username, picture, comment, rate));
+        return true;
+
     }
 
 
@@ -119,32 +127,43 @@ public class RestaurantFakeApi implements RestaurantApi {
     }
 
 
-
-
-    public void newRefresh(List<Review>reviews){
-        this.reviews.clear();
+    public List<Review> newRefresh(List<Review> reviews) {
+        // this.reviews.clear();
         this.reviews.addAll(reviews);
         notifyAll();
 
 
-
-
-    }
-
-
-    /**
-     * Retrieves a hard-coded {@link Review} object for the "Taj Mahal".
-     * <p>
-     * This method simulates an API call by immediately returning a Review list
-     * with pre-defined attributes.
-     * </p>
-     *
-     * @return The hard-coded list {@link Review} for the "Taj Mahal".
-     */
-    @Override
-    public List<Review> getReviews() {
         return reviews;
     }
 
 
+    public void newlistUpdate() {
+
+        binding.validateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (updateList()) {
+
+                    getReviews() = new Review(reviews) {
+
+
+                        
+                    }
+                }
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public List<Review> getReviews() {
+
+        return reviews;
+
+    }
 }
+
+
+

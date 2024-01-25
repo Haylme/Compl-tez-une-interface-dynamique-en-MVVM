@@ -65,7 +65,7 @@ public class ReviewsListFragment extends Fragment {
 
 
         adapter = new ReviewsAdapter(reviewsList);
-        adapter.notifyDataSetChanged();
+       // adapter.notifyDataSetChanged();
 
 
         reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {

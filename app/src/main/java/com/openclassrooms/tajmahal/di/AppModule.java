@@ -1,7 +1,10 @@
 package com.openclassrooms.tajmahal.di;
 
+import android.view.View;
+
 import com.openclassrooms.tajmahal.data.service.RestaurantApi;
 import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
+import com.openclassrooms.tajmahal.databinding.FragmentReviewsListBinding;
 
 import javax.inject.Singleton;
 
