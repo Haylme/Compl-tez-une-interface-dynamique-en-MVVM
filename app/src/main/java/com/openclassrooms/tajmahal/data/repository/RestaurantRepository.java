@@ -1,5 +1,7 @@
 package com.openclassrooms.tajmahal.data.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -7,7 +9,9 @@ import com.openclassrooms.tajmahal.data.service.RestaurantApi;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -27,7 +31,7 @@ import javax.inject.Singleton;
 @Singleton
 public class RestaurantRepository {
 
-    // The API interface instance that will be used for network requests related to restaurant data.
+    private MutableLiveData<List<Review>> reviewsLiveData;
     private final RestaurantApi restaurantApi;
 
     /**
@@ -55,8 +59,18 @@ public class RestaurantRepository {
     }
 
 
-
     public LiveData<List<Review>> getReviews() {
-        return new MutableLiveData<>(restaurantApi.getReviews());
+        if (reviewsLiveData == null) {
+            reviewsLiveData = new MutableLiveData<>();
+            List<Review> reviews = restaurantApi.getReviews();
+            reviewsLiveData.setValue(reviews);
+        }
+        return reviewsLiveData;
+    }
+
+    public void addReview(Review review) {
+        List<Review> currentReviews = new ArrayList<>(Objects.requireNonNull(reviewsLiveData.getValue()));
+        currentReviews.add(review);
+        reviewsLiveData.setValue(currentReviews); // Update the LiveData with the new list
     }
 }

@@ -1,6 +1,8 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import javax.inject.Inject;
@@ -16,8 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class ReviewsListViewModel extends ViewModel {
 
 
-
-
+    private LiveData<List<Review>> reviewsLiveData;
 
     private final RestaurantRepository repository;
 
@@ -25,15 +26,24 @@ public class ReviewsListViewModel extends ViewModel {
     @Inject
     public ReviewsListViewModel(RestaurantRepository repository) {
         this.repository = repository;
+
     }
 
 
     public LiveData<List<Review>> getReviews() {
-        return repository.getReviews();
+        if (reviewsLiveData == null) {
+            reviewsLiveData = repository.getReviews();
+
+        }
+        return reviewsLiveData;
     }
 
 
+    public void addReview(Review review) {
+        repository.addReview(review);
 
+
+    }
 
 
 }

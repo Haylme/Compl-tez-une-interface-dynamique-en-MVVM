@@ -1,5 +1,6 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -23,8 +23,6 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -57,15 +55,14 @@ public class ReviewsListFragment extends Fragment {
         return binding.getRoot();
     }
 
-
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupReviewList();
+        setupViewModel();
         toolBar();
-
+        setupNewItem();
 
         adapter = new ReviewsAdapter(reviewsList);
-       // adapter.notifyDataSetChanged();
 
 
         reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
@@ -90,7 +87,7 @@ public class ReviewsListFragment extends Fragment {
     }
 
 
-    private void setupReviewList() {
+    private void setupViewModel() {
         reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
     }
 
@@ -117,7 +114,41 @@ public class ReviewsListFragment extends Fragment {
 
     }
 
+    private void setupNewItem() {
+        binding.validateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = binding.namePost.getText().toString();
+                int rate = (int) binding.etoilesPost.getRating();
+                String comment = binding.textedit.getText().toString();
+                String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
 
+                if (validateInput(username, rate, comment)) {
+                    Review newReview = new Review(username, picture, comment, rate);
+                    reviewsListViewModel.addReview(newReview);
+                }
+            }
+        });
+    }
+
+    private boolean validateInput(String username, int rate, String comment) {
+        if (username.isEmpty()) {
+            Snackbar.make(binding.getRoot(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
+
+        if (rate < 1) {
+            Snackbar.make(binding.getRoot(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
+
+        if (comment.isEmpty()) {
+            Snackbar.make(binding.getRoot(), "Review is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
+            return false;
+        }
+
+        return true;
+    }
 }
 
 
