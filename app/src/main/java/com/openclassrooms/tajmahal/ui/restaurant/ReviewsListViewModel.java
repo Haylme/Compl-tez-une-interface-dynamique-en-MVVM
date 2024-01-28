@@ -1,8 +1,6 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import javax.inject.Inject;

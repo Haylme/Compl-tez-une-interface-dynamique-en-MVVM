@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -61,9 +60,13 @@ public class ReviewsListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupViewModel();
         toolBar();
-        setupNewItem();
+
+
+
+
 
         adapter = new ReviewsAdapter(reviewsList);
+
 
 
         reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
@@ -78,7 +81,7 @@ public class ReviewsListFragment extends Fragment {
 
             }
         });
-
+        setupNewItem();
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerview.setAdapter(adapter);
@@ -127,6 +130,7 @@ public class ReviewsListFragment extends Fragment {
                 if (validateInput(username, rate, comment)) {
                     Review newReview = new Review(username, picture, comment, rate);
                     reviewsListViewModel.addReview(newReview);
+                    reviewsList.add(newReview);
 
                 }
             }

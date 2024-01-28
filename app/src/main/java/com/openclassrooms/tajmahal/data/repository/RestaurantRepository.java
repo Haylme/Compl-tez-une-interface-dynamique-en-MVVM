@@ -1,6 +1,9 @@
 package com.openclassrooms.tajmahal.data.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.openclassrooms.tajmahal.data.service.RestaurantApi;
@@ -18,10 +21,9 @@ import javax.inject.Singleton;
 /**
  * This is the repository class for managing restaurant data. Repositories are responsible
  * for coordinating data operations from data sources such as network APIs, databases, etc.
- *
+ * <p>
  * Typically in an Android app built with architecture components, the repository will handle
  * the logic for deciding whether to fetch data from a network source or use data from a local cache.
- *
  *
  * @see Restaurant
  * @see RestaurantApi
@@ -44,11 +46,10 @@ public class RestaurantRepository {
 
     /**
      * Fetches the restaurant details.
-     *
+     * <p>
      * This method will make a network call using the provided {@link RestaurantApi} instance
      * to fetch restaurant data. Note that error handling and any transformations on the data
      * would need to be managed.
-     *
      *
      * @return LiveData holding the restaurant details.
      */
@@ -68,8 +69,14 @@ public class RestaurantRepository {
 
     public void addReview(Review review) {
         restaurantApi.addItem(review);
-        List<Review> currentReviews = new ArrayList<>(Objects.requireNonNull(reviewsLiveData.getValue()));
+        if (reviewsLiveData == null) {
+            reviewsLiveData = new MutableLiveData<>(new ArrayList<>());
+        }
+        List<Review> currentReviews = new ArrayList<>(restaurantApi.getReviews());
         currentReviews.add(review);
+        Log.d("repository", "size of currentreviews" + currentReviews);
         reviewsLiveData.setValue(currentReviews);
+
+
     }
 }
