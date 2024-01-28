@@ -1,7 +1,5 @@
 package com.openclassrooms.tajmahal.data.repository;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -69,8 +67,9 @@ public class RestaurantRepository {
     }
 
     public void addReview(Review review) {
+        restaurantApi.addItem(review);
         List<Review> currentReviews = new ArrayList<>(Objects.requireNonNull(reviewsLiveData.getValue()));
         currentReviews.add(review);
-        reviewsLiveData.setValue(currentReviews); // Update the LiveData with the new list
+        reviewsLiveData.setValue(currentReviews);
     }
 }

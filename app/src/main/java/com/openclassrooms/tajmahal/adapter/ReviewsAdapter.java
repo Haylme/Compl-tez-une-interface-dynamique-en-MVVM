@@ -57,7 +57,4 @@ public class ReviewsAdapter extends RefreshAbleAdapter<ReviewsAdapter.ReviewsVie
     }
 
 
-
-
-
 }
