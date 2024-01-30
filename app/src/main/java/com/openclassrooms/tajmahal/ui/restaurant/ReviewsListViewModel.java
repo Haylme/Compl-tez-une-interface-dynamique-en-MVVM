@@ -24,7 +24,7 @@ public class ReviewsListViewModel extends ViewModel {
     @Inject
     public ReviewsListViewModel(RestaurantRepository repository) {
         this.repository = repository;
-
+       // reviewsLiveData = repository.getReviews();
     }
 
 
@@ -33,7 +33,7 @@ public class ReviewsListViewModel extends ViewModel {
             reviewsLiveData = repository.getReviews();
 
         }
-        return reviewsLiveData;
+        return reviewsLiveData ;
     }
 
 

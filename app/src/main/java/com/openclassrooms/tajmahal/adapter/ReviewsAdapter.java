@@ -29,6 +29,8 @@ public class ReviewsAdapter extends RefreshAbleAdapter<ReviewsAdapter.ReviewsVie
 
     @Override
     public void onBindViewHolder(@NonNull ReviewsViewholder holder, int position) {
+
+
         Review review = data.get(position);
 
 

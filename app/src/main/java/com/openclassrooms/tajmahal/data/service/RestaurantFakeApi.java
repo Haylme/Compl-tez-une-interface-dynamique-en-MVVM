@@ -76,7 +76,7 @@ public class RestaurantFakeApi implements RestaurantApi {
     public void addItem(Review newItems) {
         if (newItems != null) {
 
-            reviews.add(newItems);
+            reviews.add(0,newItems);
         }
     }
 

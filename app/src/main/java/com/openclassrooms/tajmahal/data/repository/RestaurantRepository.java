@@ -32,6 +32,8 @@ import javax.inject.Singleton;
 public class RestaurantRepository {
 
     private MutableLiveData<List<Review>> reviewsLiveData;
+
+    private MutableLiveData<List<Review>> newReviewslivedata;
     private final RestaurantApi restaurantApi;
 
     /**
@@ -73,10 +75,7 @@ public class RestaurantRepository {
             reviewsLiveData = new MutableLiveData<>(new ArrayList<>());
         }
         List<Review> currentReviews = new ArrayList<>(restaurantApi.getReviews());
-        currentReviews.add(review);
-        Log.d("repository", "size of currentreviews" + currentReviews);
+
         reviewsLiveData.setValue(currentReviews);
-
-
     }
 }

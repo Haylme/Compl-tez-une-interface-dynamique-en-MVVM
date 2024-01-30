@@ -52,6 +52,7 @@ public class ReviewsListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentReviewsListBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
 
@@ -62,11 +63,7 @@ public class ReviewsListFragment extends Fragment {
         toolBar();
 
 
-
-
-
         adapter = new ReviewsAdapter(reviewsList);
-
 
 
         reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
@@ -100,22 +97,14 @@ public class ReviewsListFragment extends Fragment {
 
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
 
                 if (getActivity() != null) {
                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment_main_container).navigateUp();
-
                 }
-
-
             }
-
         });
-
-
     }
 
     private void setupNewItem() {
@@ -130,7 +119,9 @@ public class ReviewsListFragment extends Fragment {
                 if (validateInput(username, rate, comment)) {
                     Review newReview = new Review(username, picture, comment, rate);
                     reviewsListViewModel.addReview(newReview);
-                    reviewsList.add(newReview);
+
+                    binding.textedit.setText("");
+                    binding.etoilesPost.setRating(0);
 
                 }
             }

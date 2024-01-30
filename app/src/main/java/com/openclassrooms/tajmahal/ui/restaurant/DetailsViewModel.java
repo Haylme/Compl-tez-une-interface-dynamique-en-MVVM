@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
@@ -80,7 +81,7 @@ public class DetailsViewModel extends ViewModel {
 
         if (numberOfVotes > 0) {
             averageRate = totalRating / numberOfVotes;
-            return averageRate;
+            return Double.parseDouble(String.format("%.1f", averageRate));
         } else {
             return 0.0;
         }
