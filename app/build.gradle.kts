@@ -48,7 +48,7 @@ dependencies {
 
 
 
-
+    implementation ("org.hamcrest:hamcrest:2.2")
 
 
     implementation("androidx.appcompat:appcompat:$appcompat_version")

@@ -116,23 +116,21 @@ public class ReviewsListFragment extends Fragment {
                 String comment = binding.textedit.getText().toString();
                 String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
 
-                if (validateInput(username, rate, comment)) {
+                if (validateInput(rate, comment)) {
                     Review newReview = new Review(username, picture, comment, rate);
                     reviewsListViewModel.addReview(newReview);
 
                     binding.textedit.setText("");
                     binding.etoilesPost.setRating(0);
 
+
                 }
             }
         });
     }
 
-    private boolean validateInput(String username, int rate, String comment) {
-        if (username.isEmpty()) {
-            Snackbar.make(binding.getRoot(), "Name is needed", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
-            return false;
-        }
+    private boolean validateInput(int rate, String comment) {
+
 
         if (rate < 1) {
             Snackbar.make(binding.getRoot(), "Select a valid rate value", Snackbar.LENGTH_SHORT).setAnchorView(R.id.validate_Button).show();
@@ -146,6 +144,8 @@ public class ReviewsListFragment extends Fragment {
 
         return true;
     }
+
+
 }
 
 
