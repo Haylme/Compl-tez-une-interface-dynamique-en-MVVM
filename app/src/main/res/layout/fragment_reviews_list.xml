@@ -13,6 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:elevation="4dp"
         android:fitsSystemWindows="true"
@@ -20,10 +21,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/TajMahal"
-android:layout_marginStart="20dp"
-        app:titleTextColor="@color/black"
         app:navigationIcon="@drawable/baseline_arrow_back_24"
+        app:title="@string/TajMahal"
+        app:titleTextColor="@color/black"
 
         />
 
@@ -87,7 +87,7 @@ android:layout_marginStart="20dp"
         android:hint="@string/partager_ici_les_d_tails_de_votre_exp_rience"
         android:inputType="text"
         android:textColor="#666666"
-        android:textSize="10sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/avatarPost"
         app:layout_constraintTop_toBottomOf="@id/etoilesPost" />
 
@@ -96,6 +96,8 @@ android:layout_marginStart="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
+        android:clickable="true"
+        android:focusable="true"
         android:text="@string/valider"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -105,9 +107,7 @@ android:layout_marginStart="20dp"
         app:layout_constraintEnd_toEndOf="@id/textedit"
         app:layout_constraintTop_toTopOf="parent"
         app:textEndPadding="0dp"
-        app:textStartPadding="0dp"
-        android:clickable="true"
-        android:focusable="true" />
+        app:textStartPadding="0dp" />
 
 
     <View
@@ -124,12 +124,14 @@ android:layout_marginStart="20dp"
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textedit"
         app:layout_constraintStart_toStartOf="@+id/avatarPost"
-        app:layout_constraintTop_toBottomOf="@+id/separator" />
+        app:layout_constraintTop_toBottomOf="@+id/separator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

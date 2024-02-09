@@ -66,7 +66,7 @@ public class ReviewsListFragment extends Fragment {
         adapter = new ReviewsAdapter(reviewsList);
 
 
-        reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
+        reviewsListViewModel.getReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() { //observe the change in fragment and update with refresh method
 
 
             @Override
@@ -92,6 +92,7 @@ public class ReviewsListFragment extends Fragment {
         reviewsListViewModel = new ViewModelProvider(this).get(ReviewsListViewModel.class);
     }
 
+    //back stack function
 
     private void toolBar() {
 
@@ -107,6 +108,12 @@ public class ReviewsListFragment extends Fragment {
         });
     }
 
+    /**
+     *
+     * set on click method that update list data with new item
+     *
+     */
+
     private void setupNewItem() {
         binding.validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +127,8 @@ public class ReviewsListFragment extends Fragment {
                     Review newReview = new Review(username, picture, comment, rate);
                     reviewsListViewModel.addReview(newReview);
 
-                    binding.textedit.setText("");
-                    binding.etoilesPost.setRating(0);
+                    binding.textedit.setText(""); //reset text value
+                    binding.etoilesPost.setRating(0);  //reset rate value
 
 
                 }
@@ -129,7 +136,7 @@ public class ReviewsListFragment extends Fragment {
         });
     }
 
-    private boolean validateInput(int rate, String comment) {
+    private boolean validateInput(int rate, String comment) { ///check if input are not empty and valid
 
 
         if (rate < 1) {

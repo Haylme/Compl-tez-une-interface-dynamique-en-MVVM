@@ -11,6 +11,15 @@ public abstract class RefreshAbleAdapter< T extends ReviewsAdapter.ReviewsViewho
 
     protected List<Review>data = new ArrayList<>();
 
+
+    /**
+     *
+     * refresh method to update new data
+     *
+     *
+     * @param data
+     */
+
     public void refresh(List<Review>data){
 
         this.data.clear();

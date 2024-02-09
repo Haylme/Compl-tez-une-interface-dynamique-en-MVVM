@@ -24,10 +24,14 @@ public class ReviewsListViewModel extends ViewModel {
     @Inject
     public ReviewsListViewModel(RestaurantRepository repository) {
         this.repository = repository;
-       // reviewsLiveData = repository.getReviews();
+
     }
 
-
+    /**
+     *
+     *
+     * @return livedata with reviewslivedata object
+     */
     public LiveData<List<Review>> getReviews() {
         if (reviewsLiveData == null) {
             reviewsLiveData = repository.getReviews();
@@ -37,7 +41,7 @@ public class ReviewsListViewModel extends ViewModel {
     }
 
 
-    public void addReview(Review review) {
+    public void addReview(Review review) { //addreview method from repository
         repository.addReview(review);
 
 

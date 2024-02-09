@@ -57,13 +57,13 @@ public class DetailsViewModel extends ViewModel {
 
 
 
-    public int getNumberOfVotes(List<Review> reviews) {
+    public int getNumberOfVotes(List<Review> reviews) { //calculate the number of vote
         int numberVote = reviews.size();
         return numberVote;
     }
 
 
-    public int getTotalRating(List<Review> reviews) {
+    public int getTotalRating(List<Review> reviews) { //return the total of rate
         int totalRating = 0;
         for (Review review : reviews) {
             totalRating += review.getRate();
@@ -72,7 +72,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
 
-    public double getAverageNote(List<Review> reviews) {
+    public double getAverageNote(List<Review> reviews) { //return the average note
         double totalRating = getTotalRating(reviews);
 
 
@@ -87,7 +87,7 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
-    public int getAverageProgressBar(List<Review> reviews, int starRating) {
+    public int getAverageProgressBar(List<Review> reviews, int starRating) { //update method for progress bar set values
         List<Review> starReviews = new ArrayList<>();
         int totalVotes = getNumberOfVotes(reviews);
 

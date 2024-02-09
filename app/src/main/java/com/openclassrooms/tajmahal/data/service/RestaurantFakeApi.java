@@ -61,7 +61,12 @@ public class RestaurantFakeApi implements RestaurantApi {
     }
 
 
-
+    /**
+     *
+     *
+     *
+     * @return list reviews
+     */
 
 
     @Override
@@ -72,9 +77,15 @@ public class RestaurantFakeApi implements RestaurantApi {
 
     }
 
+    /**
+     * add method to update reviews
+     *
+     * @param newItems
+     */
+
     @Override
     public void addItem(Review newItems) {
-        if (newItems != null) {
+        if (newItems != null && !newItems.getComment().isEmpty()) {
 
             reviews.add(0,newItems);
         }

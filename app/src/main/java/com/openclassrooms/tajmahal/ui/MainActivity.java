@@ -21,17 +21,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       // NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_main_container);
 
-
-        /**if (savedInstanceState == null) {
-            NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.nav_graph);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.nav_host_fragment_main_container, navHostFragment)
-                   // .setPrimaryNavigationFragment(navHostFragment)
-
-                    .commit();
-        }**/
     }
 
 

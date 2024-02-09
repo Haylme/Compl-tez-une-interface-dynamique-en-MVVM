@@ -37,6 +37,7 @@ public class RestaurantfakeApiTest {
         List<Review> reviews = restaurantFakeApi.getReviews();
         assertNotNull(reviews);
         assertFalse(reviews.isEmpty());
+        assertEquals(5, reviews.size());
 
     }
 
@@ -48,6 +49,8 @@ public class RestaurantfakeApiTest {
         assertNotNull(reviews);
         assertFalse(reviews.isEmpty());
         assertEquals(newReview, reviews.get(0));
+        assertEquals(6, reviews.size());
+
     }
 
 
@@ -55,12 +58,12 @@ public class RestaurantfakeApiTest {
 
     @Test
     public void addItemFillFieldTest() {
-        Review testReview = new Review("new user", "https://example.com/avatar.jpg", "blabla", 5);
+        Review testReview = new Review("new user", "https://example.com/avatar.jpg", "", 5);
         restaurantFakeApi.addItem(testReview);
 
-        assertFalse(testReview.getComment().isEmpty());
+        assertEquals(5,restaurantFakeApi.getReviews().size());
 
-        assertFalse(testReview.getRate()<1);
+
     }
 
 

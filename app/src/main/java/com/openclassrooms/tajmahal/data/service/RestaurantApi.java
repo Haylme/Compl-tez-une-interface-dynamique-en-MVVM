@@ -49,6 +49,12 @@ public interface RestaurantApi {
      */
     List<Review> getReviews();
 
+    /**
+     *
+     * add new item into list
+     * @param newItems
+     */
+
 
     void addItem(Review newItems);
 }

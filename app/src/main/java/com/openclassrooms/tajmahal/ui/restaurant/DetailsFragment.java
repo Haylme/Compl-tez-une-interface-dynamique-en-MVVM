@@ -133,7 +133,11 @@ public class DetailsFragment extends Fragment {
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
     }
 
-
+    /**
+     *
+     * update ui with rate value
+     * @param reviews
+     */
     private void updateReviewsRate(List<Review> reviews) {
 
 
@@ -145,6 +149,13 @@ public class DetailsFragment extends Fragment {
 
 
     }
+
+    /**
+     * update ui with progress bar values
+     *
+     *
+     * @param reviews
+     */
 
     private void updateProgressBar(List<Review> reviews) {
 
@@ -163,6 +174,12 @@ public class DetailsFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * update ui number of vote
+     *
+     * @param reviews
+     */
 
     private void updateAverageRate(List<Review> reviews) {
 
@@ -171,6 +188,11 @@ public class DetailsFragment extends Fragment {
 
 
     }
+
+    /**
+     *
+     * set button click method to move to other fragment
+     */
 
     private void moveTo() {
         binding.avis.setOnClickListener(new View.OnClickListener() {
