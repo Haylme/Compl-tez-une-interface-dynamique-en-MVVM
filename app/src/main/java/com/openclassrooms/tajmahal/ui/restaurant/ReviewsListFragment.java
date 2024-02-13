@@ -2,6 +2,7 @@ package com.openclassrooms.tajmahal.ui.restaurant;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +121,7 @@ public class ReviewsListFragment extends Fragment {
             public void onClick(View v) {
                 String username = binding.namePost.getText().toString();
                 int rate = (int) binding.etoilesPost.getRating();
+                Log.d("reviewlistfragment", "onClick" + rate);
                 String comment = binding.textedit.getText().toString();
                 String picture = Uri.parse("android.resource://com.openclassrooms.tajmahal/" + R.drawable.avatarpost).toString();
 
